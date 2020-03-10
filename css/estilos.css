@@ -1,0 +1,106 @@
+body {
+background: rgb(144,153,124);
+background: radial-gradient(circle, rgba(144,153,124,1) 0%, rgba(2,67,144,1) 100%);
+}
+/* HEADER */
+.logo {
+	text-align: center;
+	margin-bottom: 5px;
+}
+	@media (max-width:600px) {
+		.logo img {
+		    width:100%;
+			height:100%;
+		}
+}
+.logo img {
+
+background: rgba(255,255,255,1);
+background: -moz-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,255,255,1)), color-stop(47%, rgba(246,246,246,1)), color-stop(100%, rgba(237,237,237,1)));
+background: -webkit-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -o-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: -ms-linear-gradient(left, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+background: linear-gradient(to right, rgba(255,255,255,1) 0%, rgba(246,246,246,1) 47%, rgba(237,237,237,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#ededed', GradientType=1 );
+border-radius: 33px 10px 45px 10px;
+-moz-border-radius: 33px 10px 45px 10px;
+-webkit-border-radius: 33px 10px 45px 10px;
+}
+.registro, .login {
+	text-align: center;
+}
+.regislogin {
+	display:flex;
+	justify-content: center;
+}
+.formuser {
+	display:flex;
+	justify-content: center;
+background: rgb(238,174,202);
+background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);;
+}
+.botonuser {
+	display:flex;
+	justify-content: center;
+	margin-bottom:10px;
+	max-width:20%;
+}
+.botonuser img {
+	width:25px;
+	height:25px;
+}
+.puser p {
+	font-weight: bold;
+	font-size: 20px;
+	text-align: center;
+	position: relative;
+	top:5px;
+}
+.menuinicio {
+	background:white;
+}
+
+/* FIN */
+
+/* USUARIO */
+.welcome p {
+	font-size: 20px;
+}
+.welcome, .salir {
+	background:#f8f9fa;
+}
+.salir img {
+	margin-top:10px;
+}
+/* FIN */
+
+/* REGISTRO */
+.imgicon {
+	width:40px;
+	height:40px;
+}
+.registro1 input {
+	border-radius: 10px;
+	background: black;
+	color:white;
+}
+.registro1 label {
+	color: yellow;
+	font-weight: bold;
+}
+/* FIN */
+
+/* PRODUCTOS */
+
+/* FIN */
+
+/* INDEXFACT */
+.factura {
+	text-align: center;
+}
+.submit {
+	text-align: center;
+}
+
+/* FIN */
