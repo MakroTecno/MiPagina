@@ -38,6 +38,8 @@
 <section class="cuerpo">
 	<div class="container">
 
+<p>HOLA A TODOS</p>
+
 	</div>
 </section>
 <!-- FOOTER -->
