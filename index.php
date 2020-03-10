@@ -37,7 +37,7 @@
 <!-- CUERPO -->
 <section class="cuerpo">
 	<div class="container">
-
+<h1>EL TITULO</h1>
 <p>HOLA A TODOS</p>
 
 	</div>
