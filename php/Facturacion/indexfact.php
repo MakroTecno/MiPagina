@@ -13,6 +13,7 @@ if(!isset($_SESSION['id'])){
 	<title>Inicio</title>
 	<link rel="stylesheet" type="text/css" href="../../css/bootstrap.min.css">
 	<script src="../../js/jquery-3.4.1.min.js"></script>
+	<script src="../../js/indexfact.js"></script>
 	<link rel="stylesheet" type="text/css" href="../../css/estilos.css">
 </head>
 <body>
@@ -51,15 +52,15 @@ if(!isset($_SESSION['id'])){
 					        <a class="nav-link" href="salir.php">Salir</a>
 					      </li>
 					    </ul>
-					    					    	<div class="form-inline my-2 my-lg-0 puser">
+					    	<div class="form-inline my-2 my-lg-0 puser">
 					    		<?php 
-					    		$consulimg = "SELECT foto, usuario FROM usuario WHERE usuario = '$user'";
-					    		$sql = mysqli_query($conectar, $consulimg);
-					    		while ($traerimg = mysqli_fetch_array($sql)){
-					    			echo '<p>'.$traerimg['usuario'].'</p>';
-					    			echo '<img src="../login/'.$traerimg["foto"].'" width="50px" height="50px">';
-								 } 
- 							  ?>
+						    		$consulimg = "SELECT foto, usuario FROM usuario WHERE usuario = '$user'";
+						    		$sql = mysqli_query($conectar, $consulimg);
+						    		while ($traerimg = mysqli_fetch_array($sql)){
+						    			echo '<p>'.$traerimg['usuario'].'</p>';
+						    			echo '<img src="../login/'.$traerimg["foto"].'" width="50px" height="50px">';
+									} 
+ 							    ?>
 					    	</div>
 					</div>
 				</nav>
@@ -69,45 +70,42 @@ if(!isset($_SESSION['id'])){
 </section>
 <!-- CUERPO -->
 <section class="cuerpo">
-				<form method="POST" action="validarfactu.php" class="factura">
-					<div class="container">
-						<div class="row">
-				<div class="col-12 col-sm-6">
-					<br><label for="nf">Numero de Factura</label>
-				    <br><input type="number" id="nf" name="numfact">
-				    <br><label for="code">Cliente</label>
-				    <br><select name="user">
-				    	<option>Seleccione el cliente</option>
-				    	<?php 
-				    	$sql = "SELECT usuario FROM usuario";
-				    	$consulta = mysqli_query($conectar, $sql);
-				    	while ($mover = mysqli_fetch_array($consulta)){
-				    	?>
-				    	<option value="<?php echo $mover['usuario']; ?>"><?php echo $mover['usuario']; ?></option>
-				    <?php }?>
-				    </select>
-				    <br><label for="iva">IVA</label>
-				    <br><input type="number" id="iva" name="iva">
-				    <br><label for="fc">Fecha de Creacion</label>
-				    <br><input type="date" id="fc" name="fc">
+	<form method="POST" action="validaruser.php" class="factura">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+				    <label for="cedula">Cedula</label>
+				    <br><input type="number" name="cedula">
 				    <br><label for="fe">Fecha de Entrega</label>
 				    <br><input type="date" id="fe" name="fe">
+				    <br><br><input type="submit" name="datosuser">
 				</div>
+			</div>
+		</div>
+	</form>
 
-				<div class="col-12 col-sm-6 repetido">
-				<label for="numfact2">Confirmar No. de Factura</label>
-					<br><input type="number" id="numfact2" name="numfact2[]"> 
-				    <br><label for="code">Codigo</label>
+	<form method="POST" action="validarfactu.php" class="factura_repetida" id="facturas">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 repetido">
+				<?php 
+					$traercodigo = "SELECT id_factura FROM datos_factura WHERE usuario = '$user'";
+					$consultacodigo = mysqli_query($conectar, $traercodigo);
+					while ($traer = mysqli_fetch_array($consultacodigo)){
+				?>
+					<input type="hidden" name="factura[]" value="<?php echo $traer['id_factura']?>"> 
+				<?php } ?>
+				    <label for="code">Code Producto</label>
 				    <br><input id="code" type="number" name="codigo[]">
 				    <br><label for="cantidad">Cantidad</label>
 				    <br><input type="number" id="cantidad" name="cantidad[]">
 				    <hr>
 				</div>
-				  <button type="submit" class="btn btn-primary submit">Submit</button>
-				</div>
 			</div>
-				</form>
-				<center><input type="submit" id="agregar" value="+"></center>
+			<button type="submit" class="btn btn-primary submit">Submit</button><br>
+		</div>
+	</form>
+				<br><center><input type="submit" id="agregar" value="+"></center>	
 </section>
 <!-- FOOTER -->
 <section class="footer">
@@ -121,8 +119,7 @@ if(!isset($_SESSION['id'])){
 
 
 	<script src="../../js/bootstrap.min.js"></script>
-	<script src="../../js/script.js"></script>
-	<script src="../../js/indexfact.js"></script>
+
 </section>
 </body>
 <?php

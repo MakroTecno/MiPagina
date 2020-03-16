@@ -1,42 +1,33 @@
 // CLONAR Y ELIMINAR INPUT
+	    $(document).ready(function(){
+        var i = 1;
 
-	$(document).ready(function(e){
-	// VARIABLES 
-	var html = '<center><div><label for="numfact2">Confirmar No. de Factura</label><br><input type="number" id="numfact2" name="numfact2[]"><br><label for="code">Codigo</label><br><input id="code" type="number" name="codigo[]"><br><label for="cantidad">Cantidad</label><br><input type="number" id="cantidad" name="cantidad[]"><br> <hr><button id="exit">X</button></div></center>';
-	// CLONAR
-	$("#agregar").click(function(){
-		$(".repetido").append(html);
-	});
-	// ELIMINAR
-	$(".repetido").on('click','#exit',function(){
-		$(this).parent('div').remove();
-	});
-});
+        $('#agregar').click(function () {
+            i++;
+            $('.repetido').append('<div class="repetido'+i+'">' +
+            						'<center><label for="code">Code Producto</label>' +
+									'<br><input id="code" type="number" name="codigo[]">' +
+									'<br><label for="cantidad">Cantidad</label>'+
+									'<br><input type="number" id="cantidad" name="cantidad[]"><br><br>'+
+                                    '<button type="button" name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button><br></center>'+
+                                  '</div>');
+        });
+        
+        $(document).on('click', '.btn_remove', function () {
+            var id = $(this).attr('id');
+           $('.repetido'+ id).remove();
+        });
 
-
-
-			// PETICION TIPO AJAX
-
-	jQuery(document).on('submit','.factura',function(event){
-		event.preventDefault();
-		jQuery.ajax({
-			url: 'validarfactu.php',
-			type: 'POST',
-			dataType: 'json',
-			data: $(this).serialize(),
-		})
-		.done(function(respuesta){
-			console.log(respuesta);
-			if(!respuesta.error) {
-				alert("Los datos se ingresaron correctamente");
-			}else {
-				alert("Los datos NO se ingresaron correctamente");
-			}
-		})
-		.fail(function(resp){
-			console.log(resp.responseText);
-		})
-		.always(function(){
-			console.log("complete");
-		})
-	});
+        $('.submit').click(function(){
+            $.ajax({
+                url:"validarfactu.php",
+                method:"POST",
+                data:$('#facturas').serialize(),
+                success:function(data)
+                {
+                    alert(data);
+                    $('#facturas')[0].reset();
+                }
+            });
+        });
+    })
