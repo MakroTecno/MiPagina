@@ -84,7 +84,7 @@ if($visitasuma < 2) {
 </div>
 <div class="col-12 col-sm-2">
   <div class="form-group">
-    <label for="Edad">Edad</label>
+    <label for="Edad">Fecha de Nacimiento</label>
     <input type="date" class="form-control" id="Edad" name="Edad">
   </div>
 </div>
@@ -107,7 +107,7 @@ if($visitasuma < 2) {
   </div>
 </div>
 </div>
-  <button type="submit" class="btn btn-primary" name="Registro">Submit</button>
+  <button type="submit" class="btn btn-primary" name="Registro">Enviar</button>
 				</form>
 			</div>
 		</div>

@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <?php
-session_start();
-if(!isset($_SESSION['id'])){
-	header("location: ../login/usuario.php");
-}else {
-	if($_SESSION['rol'] = 1) {
-			include("../conexion_mysql.php");
-	$user = $_SESSION['user']
-	?>
+	session_start();
+	if(!isset($_SESSION['id'])){
+		header("location: ../login/usuario.php");
+	}else {
+	if($_SESSION['rol'] == 1) {
+		include("../conexion_mysql.php");
+		$user = $_SESSION['user']
+?>
 <html>
 <head>
 	<title>Inicio</title>
@@ -49,7 +49,7 @@ if(!isset($_SESSION['id'])){
 					        </div>
 					      </li>
 					      <li class="nav-item">
-					        <a class="nav-link" href="salir.php">Salir</a>
+					        <a class="nav-link" href="../login/salir.php">Salir</a>
 					      </li>
 					    </ul>
 					    	<div class="form-inline my-2 my-lg-0 puser">
@@ -78,34 +78,32 @@ if(!isset($_SESSION['id'])){
 				    <br><input type="number" name="cedula">
 				    <br><label for="fe">Fecha de Entrega</label>
 				    <br><input type="date" id="fe" name="fe">
-				    <br><br><input type="submit" name="datosuser">
+				    <br><br><input type="submit" name="datosuser" value="Crear Vinculo"><hr>
 				</div>
 			</div>
 		</div>
 	</form>
-
-	<form method="POST" action="validarfactu.php" class="factura_repetida" id="facturas">
+	<center><form method="POST" action="validarfactu.php" class="factura_repetida" id="facturas">
 		<div class="container">
 			<div class="row">
 				<div class="col-12 repetido">
-				<?php 
-					$traercodigo = "SELECT id_factura FROM datos_factura WHERE usuario = '$user'";
-					$consultacodigo = mysqli_query($conectar, $traercodigo);
-					while ($traer = mysqli_fetch_array($consultacodigo)){
-				?>
-					<input type="hidden" name="factura[]" value="<?php echo $traer['id_factura']?>"> 
-				<?php } ?>
-				    <label for="code">Code Producto</label>
-				    <br><input id="code" type="number" name="codigo[]">
-				    <br><label for="cantidad">Cantidad</label>
-				    <br><input type="number" id="cantidad" name="cantidad[]">
+					<small>[*Obligatorio*]Numero de Rutina</small><br>
+					<?php 
+					   $sql = "SELECT id_factura FROM datos_factura WHERE usuario = '$user' ORDER BY id_factura DESC LIMIT 1";
+					   $conn = mysqli_query($conectar, $sql);
+					   while ($row = mysqli_fetch_array($conn)){
+						 echo '<input type="text" name="factura[]" value="'.$row["id_factura"].'">';
+					   }
+					?>
+				    <br><input id="code" type="number" name="codigo[]" placeholder="Codigo">
+				    <br><input type="number" id="cantidad" name="cantidad[]" placeholder="Cantidad">
 				    <hr>
 				</div>
 			</div>
-			<button type="submit" class="btn btn-primary submit">Submit</button><br>
+			<center><button type="submit" class="btn btn-primary submit">Crear Factura</button><br></center>
 		</div>
-	</form>
-				<br><center><input type="submit" id="agregar" value="+"></center>	
+	</form></center>
+				<br><center><input type="submit" id="agregar" value="Agregar mas..."></center>	
 </section>
 <!-- FOOTER -->
 <section class="footer">
@@ -123,9 +121,9 @@ if(!isset($_SESSION['id'])){
 </section>
 </body>
 <?php
- }else {
- 	header("location: ../perfil.php");
- } 
-}
+ 		}else {
+ 			header("location: ../perfil.php");
+ 		} 
+	}
 ?>
 </html>

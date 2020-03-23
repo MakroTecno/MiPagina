@@ -4,19 +4,18 @@ include("../conexion_mysql.php");
 	$factura = $_POST['factura'];
 	$codigo = $_POST['codigo'];
 	$cantidad = $_POST['cantidad'];
-	foreach ($codigo as $key => $value) {
-		$factura = $factura[$key];
-		$cantidad = $cantidad[$key];
-		$datos[] = '("'.$factura.'", "'.$value.'", "'.$cantidad.'")';
-		$sql = "INSERT INTO facturas (id_factura, codigo_producto, cantidad) VALUES " . implode(',', $datos);
+	foreach ($factura as $key => $value) {
+		$codigos = $codigo[$key];
+		$cantidads = $cantidad[$key];
+		$dato[] = '("'.$value.'", "'.$codigos.'", "'.$cantidads.'")';
+		$sql = "INSERT INTO facturas (id_factura, codigo_producto, cantidad) VALUES " .implode(',', $dato);
 	}
-	$sql2 = mysqli_query($conectar, $sql);
-	if($sql2){
-		echo json_encode(array('error' => false ));
-	}else {
-		echo json_encode(array('error' => true )) or die(mysqli_error($conectar));;
-	}
-
+	
+//Realizamos la consulta y damos una respuesta
+if(mysqli_query($conectar, $sql)) {
+header("location: verfact.php");
+die('<script>$("#facturas")[0].reset();</script>');
+};
 
 
 

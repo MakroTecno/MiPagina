@@ -40,13 +40,20 @@ else {
 					          Sistemas
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="Facturacion/indexfact.php">Facturacion</a>
+					      <?php
+					      $rol = $_SESSION['rol'];
+					      if ($rol == 1){
+					      	echo '<a class="dropdown-item" href="Facturacion/indexfact.php">Facturacion</a>';
+					      }else {
+					      	echo '<a class="dropdown-item" href="Facturacion/verfact.php">Facturacion</a>';
+					      }
+					      ?>
 					          <a class="dropdown-item" href="#">Sistema 2</a>
 					          <a class="dropdown-item" href="#">Sistema 3</a>
 					        </div>
 					      </li>
 					      <li class="nav-item">
-					        <a class="nav-link" href="salir.php">Salir</a>
+					        <a class="nav-link" href="login/salir.php">Salir</a>
 					      </li>
 					    </ul>
 					    	<div class="form-inline my-2 my-lg-0 puser">

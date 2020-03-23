@@ -6,7 +6,8 @@ if(!isset($_SESSION['id'])){
 }
 else {
 		include("conexion_mysql.php");
-	$user = $_SESSION['user']
+	$user = $_SESSION['user'];
+	$rol = $_SESSION['rol'];
 	?>
 <html>
 <head>
@@ -40,7 +41,13 @@ else {
 					          Sistemas
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-					          <a class="dropdown-item" href="Facturacion/indexfact.php">Facturacion</a>
+					        	<?php 
+					        	if($rol == 1){
+					        		echo '<a class="dropdown-item" href="Facturacion/indexfact.php">Facturacion</a>';
+					        	}else {
+					        		echo '<a class="dropdown-item" href="Facturacion/verfact.php">Facturacion</a>';
+					        	}
+					        	?>
 					          <a class="dropdown-item" href="#">Sistema #2</a>
 					          <a class="dropdown-item" href="#">Sistema #3</a>
 					        </div>

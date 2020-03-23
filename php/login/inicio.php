@@ -40,6 +40,7 @@ else {
 					      </li>
 					      <?php
 					      $rol = $_SESSION['rol'];
+					      
 					      if ($rol == 1){
 					      ?>
 					      <li class="nav-item dropdown">
@@ -48,7 +49,7 @@ else {
 					        </a>
 					        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					          <a class="dropdown-item" href="../Admin/rol.php">Add/Quit Rol</a>
-					          <a class="dropdown-item" href="#">Usuarios</a>
+					          <a class="dropdown-item" href="../Admin/usuarios.php">Usuarios</a>
 					          <a class="dropdown-item" href="#">Editar Usuarios</a>
 					        </div>
 					      </li>

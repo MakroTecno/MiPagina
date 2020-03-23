@@ -120,17 +120,18 @@ if(isset($_POST['login']))
 	$user = mysqli_real_escape_string($conectar, $_POST['usuario']);
 	$pass = mysqli_real_escape_string($conectar, $_POST['contraseña']);
 	// VERIFICAR SI EL USUARIO EXISTE
-$consulta = "SELECT id_usuario, usuario, pass, rol, visitas FROM usuario WHERE usuario = ? AND pass = ?";
+$consulta = "SELECT id_usuario, usuario, pass, rol, visitas, cedula FROM usuario WHERE usuario = ? AND pass = ?";
 $verificar = mysqli_prepare($conectar, $consulta);
 $sentencia = mysqli_stmt_bind_param($verificar, "ss",$user, $pass);
 $sentencia = mysqli_stmt_execute($verificar);
-$sentencia = mysqli_stmt_bind_result($verificar, $id, $user, $contrasena, $rol, $visitas);
+$sentencia = mysqli_stmt_bind_result($verificar, $id, $user, $contrasena, $rol, $visitas, $cedula);
 while(mysqli_stmt_fetch($verificar)) {
 	$_SESSION['id']         = $id;
 	$_SESSION['user']       = $user;
 	$_SESSION['contrasena'] = $contrasena;
 	$_SESSION['rol']        = $rol;
 	$_SESSION['visita']     = $visitas;
+	$_SESSION['cedula']     = $cedula;
 
 		if($_SESSION['user'] == $user && $_SESSION['contrasena'] == $pass) {
 		header("location: registro.php");

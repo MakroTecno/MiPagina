@@ -6,7 +6,9 @@ if(!isset($_SESSION['id'])){
 }
 else {
 		include("../conexion_mysql.php");
-	$user = $_SESSION['user']
+	$user   = $_SESSION['user'];
+	$rol = $_SESSION['rol'];
+	$cedula = $_SESSION['cedula'];
 	?>
 <html>
 <head>
@@ -37,10 +39,7 @@ else {
 					      </li>
 					      <li class="nav-item">
 					        <a class="nav-link" href="../proyectos.php">Sistemas</a>
-					      </li>
-						  <li class="nav-item">
-					        <a class="nav-link" href="verfact.php">Mis Facturas</a>
-					      </li>					      	
+					      </li>				      	
 					      <li class="nav-item">
 					        <a class="nav-link" href="../login/salir.php">Salir</a>
 					      </li>
@@ -66,6 +65,14 @@ else {
 	<div class="container">
 		<div class="row">
 			<div class="col-12">
+				<?php 	
+					  	$sql = "SELECT id_factura FROM datos_factura WHERE cedula = '$cedula'";
+					   $conn = mysqli_query($conectar, $sql);
+					   while ($row = mysqli_fetch_array($conn)){
+					   	$id_fact = $row['id_factura'];
+						 echo '<a href="factura.php?fact='.$id_fact.'"><input type="submit" name="factura" value="'.$id_fact.'"></a>';
+					   }
+				?>
 			</div>
 		</div>
 	</div>
@@ -84,6 +91,7 @@ else {
 	<script src="../../js/bootstrap.min.js"></script>
 	<script src="../../js/script.js"></script>
 </section>
+
 </body>
 <?php 
 }
